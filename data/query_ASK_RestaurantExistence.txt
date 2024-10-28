@@ -1,6 +1,10 @@
 PREFIX ns: <http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-ASK WHERE {
+SELECT ?restaurantName ?location ?franchise
+WHERE {
     ns:Restaurant_El-Madina rdf:type ns:Restaurant .
+    OPTIONAL { ns:Restaurant_El-Madina ns:fullName ?restaurantName . }
+    OPTIONAL { ns:Restaurant_El-Madina ns:restaurantLocation ?location . }
+    OPTIONAL { ns:Restaurant_El-Madina ns:belongsToFranchise ?franchise . }
 }

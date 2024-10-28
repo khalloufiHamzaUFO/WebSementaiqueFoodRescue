@@ -17,29 +17,6 @@ public class RestApi {
 
     Model model = JenaEngine.readModel("data/rescuefood.owl");
 
-
-    @GetMapping("/avion")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public String afficherAvion() {
-        String NS = "";
-        if (model != null) {
-
-            NS = model.getNsPrefixURI("");
-
-
-            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-
-            OutputStream res = JenaEngine.executeQuery(inferedModel, "data/query_SELECT_RestaurantFranchiseLocation.txt");
-
-
-            System.out.println(res);
-            return res.toString();
-
-
-        } else {
-            return ("Error when reading model from ontology");
-        }
-    }
     //YES
     @GetMapping("/ACKOrder")
     @CrossOrigin(origins = "http://localhost:3000")
@@ -54,6 +31,30 @@ public class RestApi {
 
             if (query.isAskType()) {
                 boolean result = JenaEngine.executeAskQueryFile(inferedModel, "data/query_ASK_OrderCollected.txt");
+                return Boolean.toString(result);
+            } else {
+                OutputStream res = JenaEngine.executeQuery(inferedModel, queryString);
+                System.out.println(res);
+                return res.toString();
+            }
+        } else {
+            return "Error when reading model from ontology";
+        }
+    }
+    //YES
+    @GetMapping("/RestaurentFranchise")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String afficherRestaurentFranchise() {
+        if (model != null) {
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // Load query as string
+            File queryFile = new File("data/query_Select_RestaurantFranchiseDetails.txt");
+            String queryString = FileTool.getContents(queryFile);
+            Query query = QueryFactory.create(queryString);
+
+            if (query.isAskType()) {
+                boolean result = JenaEngine.executeAskQueryFile(inferedModel, "data/query_Select_RestaurantFranchiseDetails.txt");
                 return Boolean.toString(result);
             } else {
                 OutputStream res = JenaEngine.executeQuery(inferedModel, queryString);
@@ -81,31 +82,21 @@ public class RestApi {
         }
     }
 
-
-
-
-    @GetMapping("/RestaurantExistence")
+    @GetMapping("/RestaurantDetails")
     @CrossOrigin(origins = "http://localhost:3000")
-    public String restaurantExistence() {
-        String NS = "";
+    public String getRestaurantDetails() {
         if (model != null) {
-            NS = model.getNsPrefixURI("");
             Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
 
             // Load query as string
-            File queryFile = new File("data/query_ASK_RestaurantExistence.txt");
+            File queryFile = new File("data/query_Select_RestaurantDetails.txt");
             String queryString = FileTool.getContents(queryFile);
             Query query = QueryFactory.create(queryString);
 
-            // Check the query type and execute accordingly
-            if (query.isAskType()) {
-                boolean result = JenaEngine.executeAskQueryFile(inferedModel, "data/query_ASK_RestaurantExistence.txt");
-                return Boolean.toString(result);
-            } else {
-                OutputStream res = JenaEngine.executeQuery(inferedModel, queryString);
-                System.out.println(res);
-                return res.toString();
-            }
+            // Execute the SELECT query
+            OutputStream res = JenaEngine.executeQuery(inferedModel, queryString);
+            System.out.println(res);
+            return res.toString();
         } else {
             return "Error when reading model from ontology";
         }

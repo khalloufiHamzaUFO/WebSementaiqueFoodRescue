@@ -421,6 +421,29 @@
         <rdfs:domain rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
+
+    <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#ORD12345">
+        <rdf:type rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Order"/>
+        <ns:reference rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ORD12345</ns:reference>
+        <ns:isCollected rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ns:isCollected>
+        <ns:status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delivered</ns:status>
+    </owl:NamedIndividual>
+
+    <owl:DatatypeProperty rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#reference">
+        <rdfs:domain rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Order"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#isCollected">
+        <rdfs:domain rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Order"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#status">
+        <rdfs:domain rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Order"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
     
 
 

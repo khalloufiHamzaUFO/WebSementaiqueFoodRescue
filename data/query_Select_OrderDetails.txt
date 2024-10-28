@@ -1,9 +1,20 @@
 PREFIX ns: <http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?order ?property ?value
+SELECT ?orderReference ?orderStatus ?ownerName ?foodName ?quantity ?price
 WHERE {
-    ?order rdf:type ns:Order .
-    ?order ns:reference "ORD12345" .
-    ?order ?property ?value .
+    ?order rdf:type ns:Order ;
+           ns:reference ?orderReference ;
+           ns:status ?orderStatus ;
+           ns:hasOwner ?owner ;
+           ns:hasOrderLine ?orderLine .
+
+    ?owner ns:firstName ?ownerFirstName ;
+           ns:lastName ?ownerLastName .
+    BIND(CONCAT(?ownerFirstName, " ", ?ownerLastName) AS ?ownerName)
+
+    ?orderLine ns:hasFood ?food ;
+               ns:quantity ?quantity ;
+               ns:price ?price .
+    ?food ns:foodName ?foodName .
 }
