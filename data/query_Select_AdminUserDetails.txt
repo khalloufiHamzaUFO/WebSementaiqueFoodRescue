@@ -1,0 +1,11 @@
+PREFIX ns: <http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?adminUser ?firstName ?lastName ?email ?role
+WHERE {
+    ?adminUser rdf:type ns:AdminUser .
+    OPTIONAL { ?adminUser ns:firstName ?firstName . }
+    OPTIONAL { ?adminUser ns:lastName ?lastName . }
+    OPTIONAL { ?adminUser ns:email ?email . }
+    OPTIONAL { ?adminUser ns:role ?role . }
+}

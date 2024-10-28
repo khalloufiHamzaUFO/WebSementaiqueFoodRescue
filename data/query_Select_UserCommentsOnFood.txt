@@ -1,0 +1,24 @@
+PREFIX ns: <http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?user ?firstName ?lastName ?food ?foodName ?comment ?commentContent ?calories ?fats ?protein ?carbohydrates
+WHERE {
+    ?user rdf:type ns:User .
+    ?user ns:firstName ?firstName .
+    ?user ns:lastName ?lastName .
+
+    ?comment rdf:type ns:Comment .
+    ?comment ns:commentContent ?commentContent .
+    ?comment ns:belongsToUser ?user .
+
+    ?food rdf:type ns:Food .
+    ?food ns:foodName ?foodName .
+    ?comment ns:referencesFood ?food .
+
+    ?food ns:hasNutritionInfo ?nutritionInfo .
+    ?nutritionInfo ns:calories ?calories .
+    ?nutritionInfo ns:fats ?fats .
+    ?nutritionInfo ns:protein ?protein .
+    ?nutritionInfo ns:carbohydrates ?carbohydrates .
+}
+ORDER BY ?user ?food
