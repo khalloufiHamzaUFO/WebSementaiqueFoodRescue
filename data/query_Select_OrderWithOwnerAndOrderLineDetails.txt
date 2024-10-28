@@ -1,0 +1,40 @@
+PREFIX ns: <http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?order ?reference ?isCollected ?status ?ownerName ?foodName ?quantity ?price
+WHERE {
+    # Select orders and basic properties
+    ?order rdf:type ns:Order .
+    OPTIONAL { ?order ns:reference ?reference . }
+    OPTIONAL { ?order ns:isCollected ?isCollected . }
+    OPTIONAL { ?order ns:status ?status . }
+
+    # Retrieve owner details
+    OPTIONAL {
+        ?order ns:hasOwner ?owner .
+        ?owner ns:firstName ?firstName .
+        ?owner ns:lastName ?lastName .
+        BIND(CONCAT(?firstName, " ", ?lastName) AS ?ownerName)
+    }
+
+    # Retrieve order line details
+    OPTIONAL {
+        ?order ns:hasOrderLine ?orderLine .
+        ?orderLine ns:hasFood ?food .
+        ?food ns:foodName ?foodName .
+        OPTIONAL { ?orderLine ns:quantity ?quantity . }
+        OPTIONAL { ?orderLine ns:price ?price . }
+    }
+
+    # Use UNION with proper brace structure
+    {
+        ?order ns:status ?status .
+        FILTER(?status = "Pending" || ?status = "Delivered")
+    }
+    UNION
+    {
+        ?order ns:isCollected ?isCollected .
+        FILTER(?isCollected = true)
+    }
+}
+ORDER BY ?order

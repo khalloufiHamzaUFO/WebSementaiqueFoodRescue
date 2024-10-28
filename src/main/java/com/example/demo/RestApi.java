@@ -263,6 +263,62 @@ public class RestApi {
     }
 
 
+    @GetMapping("/ACKUserDetails")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String ackUserDetails() {
+        String NS = "";
+        if (model != null) {
+            NS = model.getNsPrefixURI("");
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // Load query as string
+            File queryFile = new File("data/query_ACK_Select_UserDetails.txt");
+            String queryString = FileTool.getContents(queryFile);
+            Query query = QueryFactory.create(queryString);
+
+            // Check the query type and execute accordingly
+            if (query.isAskType()) {
+                boolean result = JenaEngine.executeAskQueryFile(inferedModel, "data/query_ACK_Select_UserDetails.txt");
+                return Boolean.toString(result);
+            } else {
+                OutputStream res = JenaEngine.executeQuery(inferedModel, queryString);
+                System.out.println(res);
+                return res.toString();
+            }
+        } else {
+            return "Error when reading model from ontology";
+        }
+    }
+
+    @GetMapping("/OrderWithOwnerAndOrderLineDetails")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public String selectOrderWithOwnerAndOrderLineDetails() {
+        String NS = "";
+        if (model != null) {
+            NS = model.getNsPrefixURI("");
+            Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
+            // Load query as string
+            File queryFile = new File("data/query_Select_OrderWithOwnerAndOrderLineDetails.txt");
+            String queryString = FileTool.getContents(queryFile);
+            Query query = QueryFactory.create(queryString);
+
+            // Check the query type and execute accordingly
+            if (query.isAskType()) {
+                boolean result = JenaEngine.executeAskQueryFile(inferedModel, "data/query_Select_OrderWithOwnerAndOrderLineDetails.txt");
+                return Boolean.toString(result);
+            } else {
+                OutputStream res = JenaEngine.executeQuery(inferedModel, queryString);
+                System.out.println(res);
+                return res.toString();
+            }
+        } else {
+            return "Error when reading model from ontology";
+        }
+    }
+
+
+
 
 
 }

@@ -813,14 +813,37 @@
 
     <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Yessine_Ben_Salah">
         <rdf:type rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User"/>
+        <ns:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yessine</ns:firstName>
+        <ns:lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ben Salah</ns:lastName>
+        <ns:email rdf:datatype="http://www.w3.org/2001/XMLSchema#string">yessine.bensalah@example.com</ns:email>
+        <ns:role rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Client</ns:role>
     </owl:NamedIndividual>
 
 
-    <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User_Jane_Doe">
+    <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Maissa_Zouaoui">
+        <rdf:type rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User"/>
+        <ns:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maissa</ns:firstName>
+        <ns:lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zouaoui</ns:lastName>
+        <ns:email rdf:datatype="http://www.w3.org/2001/XMLSchema#string">maissa.zouaoui@example.com</ns:email>
+        <ns:role rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Customer</ns:role>
+    </owl:NamedIndividual>
+
+
+    <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Fedi_Ben_Amor">
+        <rdf:type rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User"/>
+        <ns:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fedi</ns:firstName>
+        <ns:lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ben Amor</ns:lastName>
+        <ns:email rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fedi.benamor@example.com</ns:email>
+        <ns:role rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RestaurantOwner</ns:role>
+    </owl:NamedIndividual>
+
+
+    <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User_Hamza_kh">
         <rdf:type rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User"/>
         <ns:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hamza</ns:firstName>
         <ns:lastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">kh</ns:lastName>
         <ns:email rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hamza.kh@example.com</ns:email>
+        <ns:role rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Agent</ns:role>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Food_Pasta">
@@ -842,7 +865,7 @@
     <owl:NamedIndividual rdf:about="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Comment_by_Jane_Doe_on_Pasta">
         <rdf:type rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Comment"/>
         <ns:commentContent rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delicious and filling!</ns:commentContent>
-        <ns:belongsToUser rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User_Jane_Doe"/>
+        <ns:belongsToUser rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#User_Hamza_kh"/>
         <ns:referencesFood rdf:resource="http://www.rescuefood.org/ontologies/2024/rescue-food-ontology#Food_Pasta"/>
     </owl:NamedIndividual>
 
